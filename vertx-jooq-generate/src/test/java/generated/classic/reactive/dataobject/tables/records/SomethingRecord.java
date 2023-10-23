@@ -790,6 +790,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
         setSometimestampwithtz(from.getSometimestampwithtz());
         setSomebytea(from.getSomebytea());
         setSomestringaslist(from.getSomestringaslist());
+        resetChangedOnNotNull();
     }
 
     @Override
@@ -833,6 +834,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
         setSometimestampwithtz(sometimestampwithtz);
         setSomebytea(somebytea);
         setSomestringaslist(somestringaslist);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -860,6 +862,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
             setSometimestampwithtz(value.getSometimestampwithtz());
             setSomebytea(value.getSomebytea());
             setSomestringaslist(value.getSomestringaslist());
+            resetChangedOnNotNull();
         }
     }
 

@@ -4,6 +4,8 @@
 package generated.classic.reactive.guice;
 
 
+import generated.classic.reactive.guice.tables.Author;
+import generated.classic.reactive.guice.tables.Book;
 import generated.classic.reactive.guice.tables.Something;
 import generated.classic.reactive.guice.tables.Somethingcomposite;
 import generated.classic.reactive.guice.tables.Somethingwithoutjson;
@@ -14,6 +16,16 @@ import generated.classic.reactive.guice.tables.Somethingwithoutjson;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>vertx.AUTHOR</code>.
+     */
+    public static final Author AUTHOR = Author.AUTHOR;
+
+    /**
+     * The table <code>vertx.BOOK</code>.
+     */
+    public static final Book BOOK = Book.BOOK;
 
     /**
      * The table <code>vertx.something</code>.

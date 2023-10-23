@@ -4,13 +4,18 @@
 package generated.mutiny.reactive.guice;
 
 
+import generated.mutiny.reactive.guice.tables.Author;
+import generated.mutiny.reactive.guice.tables.Book;
 import generated.mutiny.reactive.guice.tables.Something;
 import generated.mutiny.reactive.guice.tables.Somethingcomposite;
 import generated.mutiny.reactive.guice.tables.Somethingwithoutjson;
+import generated.mutiny.reactive.guice.tables.records.AuthorRecord;
+import generated.mutiny.reactive.guice.tables.records.BookRecord;
 import generated.mutiny.reactive.guice.tables.records.SomethingRecord;
 import generated.mutiny.reactive.guice.tables.records.SomethingcompositeRecord;
 import generated.mutiny.reactive.guice.tables.records.SomethingwithoutjsonRecord;
 
+import org.jooq.ForeignKey;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
@@ -28,7 +33,15 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<AuthorRecord> AUTHOR_PKEY = Internal.createUniqueKey(Author.AUTHOR, DSL.name("AUTHOR_pkey"), new TableField[] { Author.AUTHOR.ID }, true);
+    public static final UniqueKey<BookRecord> BOOK_PKEY = Internal.createUniqueKey(Book.BOOK, DSL.name("BOOK_pkey"), new TableField[] { Book.BOOK.ID }, true);
     public static final UniqueKey<SomethingRecord> SOMETHING_PKEY = Internal.createUniqueKey(Something.SOMETHING, DSL.name("something_pkey"), new TableField[] { Something.SOMETHING.SOMEID }, true);
     public static final UniqueKey<SomethingcompositeRecord> SOMETHINGCOMPOSITE_PKEY = Internal.createUniqueKey(Somethingcomposite.SOMETHINGCOMPOSITE, DSL.name("somethingComposite_pkey"), new TableField[] { Somethingcomposite.SOMETHINGCOMPOSITE.SOMEID, Somethingcomposite.SOMETHINGCOMPOSITE.SOMESECONDID }, true);
     public static final UniqueKey<SomethingwithoutjsonRecord> SOMETHINGWITHOUTJSON_PKEY = Internal.createUniqueKey(Somethingwithoutjson.SOMETHINGWITHOUTJSON, DSL.name("somethingWithoutJson_pkey"), new TableField[] { Somethingwithoutjson.SOMETHINGWITHOUTJSON.SOMEID }, true);
+
+    // -------------------------------------------------------------------------
+    // FOREIGN KEY definitions
+    // -------------------------------------------------------------------------
+
+    public static final ForeignKey<BookRecord, AuthorRecord> BOOK__AUTHOR_BOOK = Internal.createForeignKey(Book.BOOK, DSL.name("author_book"), new TableField[] { Book.BOOK.AUTHOR_ID }, Keys.AUTHOR_PKEY, new TableField[] { Author.AUTHOR.ID }, true);
 }

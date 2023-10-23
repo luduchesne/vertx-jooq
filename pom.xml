@@ -13,6 +13,7 @@
         <module>vertx-jooq-rx-jdbc</module>
         <module>vertx-jooq-generate</module>
         <module>vertx-jooq-classic-reactive</module>
+        <module>vertx-jooq-classic-r2dbc</module>
         <module>vertx-jooq-shared-reactive</module>
         <module>vertx-jooq-rx-reactive</module>
         <module>vertx-jooq-rx3-reactive</module>
@@ -41,7 +42,7 @@
         <mutiny.bingings.version>2.26.0</mutiny.bingings.version>
     </properties>
     <groupId>io.github.jklingsporn</groupId>
-    <version>6.5.5</version>
+    <version>6.5.6-RC3</version>
     <artifactId>vertx-jooq</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A jOOQ-CodeGenerator to create vertxified DAOs and POJOs</description>
@@ -126,19 +127,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
             </plugin>
@@ -191,9 +179,13 @@
         <url>https://github.com/jklingsporn/vertx-jooq</url>
     </scm>
     <distributionManagement>
+        <snapshotRepository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Kawet/vertx-jooq</url>
+        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Kawet/vertx-jooq</url>
         </repository>
     </distributionManagement>
 </project>

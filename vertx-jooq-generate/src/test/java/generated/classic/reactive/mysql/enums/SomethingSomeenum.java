@@ -39,7 +39,7 @@ public enum SomethingSomeenum implements EnumType {
 
     @Override
     public String getName() {
-        return "something_someEnum";
+        return null;
     }
 
     @Override

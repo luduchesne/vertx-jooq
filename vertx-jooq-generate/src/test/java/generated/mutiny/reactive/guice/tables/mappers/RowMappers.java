@@ -7,6 +7,26 @@ public class RowMappers {
 
         private RowMappers(){}
 
+        public static Function<Row,generated.mutiny.reactive.guice.tables.pojos.Author> getAuthorMapper() {
+                return row -> {
+                        generated.mutiny.reactive.guice.tables.pojos.Author pojo = new generated.mutiny.reactive.guice.tables.pojos.Author();
+                        pojo.setId(row.getInteger("id"));
+                        pojo.setName(row.getString("name"));
+                        return pojo;
+                };
+        }
+
+        public static Function<Row,generated.mutiny.reactive.guice.tables.pojos.Book> getBookMapper() {
+                return row -> {
+                        generated.mutiny.reactive.guice.tables.pojos.Book pojo = new generated.mutiny.reactive.guice.tables.pojos.Book();
+                        pojo.setId(row.getInteger("id"));
+                        pojo.setLabel(row.getString("label"));
+                        pojo.setLongField(row.getLong("long_Field"));
+                        pojo.setAuthorId(row.getInteger("author_id"));
+                        return pojo;
+                };
+        }
+
         public static Function<Row,generated.mutiny.reactive.guice.tables.pojos.Something> getSomethingMapper() {
                 return row -> {
                         generated.mutiny.reactive.guice.tables.pojos.Something pojo = new generated.mutiny.reactive.guice.tables.pojos.Something();

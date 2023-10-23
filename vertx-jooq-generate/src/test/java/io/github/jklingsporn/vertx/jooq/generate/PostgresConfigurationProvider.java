@@ -4,6 +4,11 @@ import io.github.jklingsporn.vertx.jooq.generate.converter.CommaSeparatedStringI
 import io.github.jklingsporn.vertx.jooq.generate.converter.SomeJsonPojo;
 import io.github.jklingsporn.vertx.jooq.generate.converter.SomeJsonPojoConverter;
 import io.github.jklingsporn.vertx.jooq.shared.postgres.JSONBToJsonObjectConverter;
+import io.r2dbc.pool.ConnectionPool;
+import io.r2dbc.pool.ConnectionPoolConfiguration;
+import io.r2dbc.spi.ConnectionFactories;
+import io.r2dbc.spi.ConnectionFactory;
+import io.r2dbc.spi.ConnectionFactoryOptions;
 import io.vertx.core.json.JsonObject;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DefaultConfiguration;
@@ -15,6 +20,7 @@ import org.junit.Assert;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +30,33 @@ import java.util.List;
 public class PostgresConfigurationProvider extends AbstractDatabaseConfigurationProvider {
 
     private static PostgresConfigurationProvider INSTANCE;
+
+    private ConnectionPool connectionPool;
     public static PostgresConfigurationProvider getInstance() {
         return INSTANCE == null ? INSTANCE = new PostgresConfigurationProvider() : INSTANCE;
+    }
+
+    public  PostgresConfigurationProvider(){
+        super();
+        ConnectionFactory connectionFactory = ConnectionFactories.get(
+                ConnectionFactoryOptions.builder()
+                        .option(ConnectionFactoryOptions.DRIVER,"pool")
+                        .option(ConnectionFactoryOptions.PROTOCOL,"postgresql") // driver identifier, PROTOCOL is delegated as DRIVER by the pool.
+                        .option(ConnectionFactoryOptions.HOST,"127.0.0.1")
+                        .option(ConnectionFactoryOptions.PORT,5432)
+                        .option(ConnectionFactoryOptions.USER, Credentials.POSTGRES.getUser())
+                        .option(ConnectionFactoryOptions.PASSWORD, Credentials.POSTGRES.getPassword())
+                        .option(ConnectionFactoryOptions.DATABASE,"postgres")
+                        .build()
+        );
+        ConnectionPoolConfiguration connectionPoolConfiguration = ConnectionPoolConfiguration
+                                                                          .builder(connectionFactory)
+                                                                          .initialSize(1)
+                                                                          .maxSize(10)
+                                                                          .build();
+
+       connectionPool =  new ConnectionPool(connectionPoolConfiguration);
+
     }
 
     @Override
@@ -65,6 +96,20 @@ public class PostgresConfigurationProvider extends AbstractDatabaseConfiguration
                     "  \"someId\" SERIAL,\n" +
                     "  \"someString\" VARCHAR(45) DEFAULT NULL,\n" +
                     "  PRIMARY KEY (\"someId\"));\n").execute();
+            connection.prepareStatement("CREATE TABLE \"AUTHOR\" (\n" +
+                                                "  \"id\" INTEGER NOT NULL,\n" +
+                                                "  \"name\" VARCHAR(512) NULL,\n" +
+                                                "  PRIMARY KEY (\"id\"));\n").execute();
+            connection.prepareStatement("CREATE TABLE \"BOOK\" (\n" +
+                                                "  \"id\" INTEGER NOT NULL,\n" +
+                                                "  \"label\" VARCHAR(512) NULL,\n" +
+                                                "  \"long_Field\" bigint,\n" +
+                                                "  \"author_id\" INTEGER NOT NULL,\n" +
+                                                "  PRIMARY KEY (\"id\"),\n " +
+                                                "CONSTRAINT author_book FOREIGN KEY (author_id)\n" +
+                                               "REFERENCES \"AUTHOR\" (id) MATCH SIMPLE);").execute();
+
+
         }catch (Throwable e){
             Assert.fail(e.getMessage());
         }
@@ -107,6 +152,10 @@ public class PostgresConfigurationProvider extends AbstractDatabaseConfiguration
     @Override
     public org.jooq.Configuration createDAOConfiguration(){
         return new DefaultConfiguration().set(SQLDialect.POSTGRES);
+    }
+
+    public org.jooq.Configuration createDAOR2dbcConfiguration(){
+        return new DefaultConfiguration().set(SQLDialect.POSTGRES).set(connectionPool);
     }
 
 }

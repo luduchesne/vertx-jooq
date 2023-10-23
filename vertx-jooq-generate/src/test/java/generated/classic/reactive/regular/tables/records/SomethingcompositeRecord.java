@@ -180,6 +180,7 @@ public class SomethingcompositeRecord extends UpdatableRecordImpl<Somethingcompo
         setSomeid(from.getSomeid());
         setSomesecondid(from.getSomesecondid());
         setSomejsonobject(from.getSomejsonobject());
+        resetChangedOnNotNull();
     }
 
     @Override
@@ -208,6 +209,7 @@ public class SomethingcompositeRecord extends UpdatableRecordImpl<Somethingcompo
         setSomeid(someid);
         setSomesecondid(somesecondid);
         setSomejsonobject(somejsonobject);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -220,6 +222,7 @@ public class SomethingcompositeRecord extends UpdatableRecordImpl<Somethingcompo
             setSomeid(value.getSomeid());
             setSomesecondid(value.getSomesecondid());
             setSomejsonobject(value.getSomejsonobject());
+            resetChangedOnNotNull();
         }
     }
 

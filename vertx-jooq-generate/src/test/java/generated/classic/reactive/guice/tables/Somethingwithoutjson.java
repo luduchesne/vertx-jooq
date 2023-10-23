@@ -52,12 +52,12 @@ public class Somethingwithoutjson extends TableImpl<SomethingwithoutjsonRecord> 
     /**
      * The column <code>vertx.somethingWithoutJson.someId</code>.
      */
-    public final TableField<SomethingwithoutjsonRecord, Integer> SOMEID = createField(DSL.name("someId"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('\"somethingWithoutJson_someId_seq\"'::regclass)", SQLDataType.INTEGER)), this, "");
+    public final TableField<SomethingwithoutjsonRecord, Integer> SOMEID = createField(DSL.name("someId"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field(DSL.raw("nextval('\"somethingWithoutJson_someId_seq\"'::regclass)"), SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>vertx.somethingWithoutJson.someString</code>.
      */
-    public final TableField<SomethingwithoutjsonRecord, String> SOMESTRING = createField(DSL.name("someString"), SQLDataType.VARCHAR(45).defaultValue(DSL.field("NULL::character varying", SQLDataType.VARCHAR)), this, "");
+    public final TableField<SomethingwithoutjsonRecord, String> SOMESTRING = createField(DSL.name("someString"), SQLDataType.VARCHAR(45).defaultValue(DSL.field(DSL.raw("NULL::character varying"), SQLDataType.VARCHAR)), this, "");
 
     private Somethingwithoutjson(Name alias, Table<SomethingwithoutjsonRecord> aliased) {
         this(alias, aliased, null);

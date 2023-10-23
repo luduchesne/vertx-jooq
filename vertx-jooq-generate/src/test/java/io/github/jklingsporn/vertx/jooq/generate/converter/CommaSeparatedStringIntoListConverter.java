@@ -3,6 +3,7 @@ package io.github.jklingsporn.vertx.jooq.generate.converter;
 import io.github.jklingsporn.vertx.jooq.shared.postgres.PgConverter;
 import io.github.jklingsporn.vertx.jooq.shared.postgres.RowConverter;
 import org.jooq.Converter;
+import org.jooq.ConverterContext;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,12 +25,12 @@ public class CommaSeparatedStringIntoListConverter implements PgConverter<String
     }
 
     @Override
-    public List<String> from(String databaseObject) {
+    public List<String> from(String databaseObject, ConverterContext converterContext) {
         return databaseObject == null? Collections.emptyList(): Arrays.asList(databaseObject.split(","));
     }
 
     @Override
-    public String to(List<String> userObject) {
+    public String to(List<String> userObject, ConverterContext converterContext) {
         return userObject == null?null: String.join(",", userObject);
     }
 

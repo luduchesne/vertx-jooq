@@ -504,6 +504,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
         setSomejsonobject(from.getSomejsonobject());
         setSomejsonarray(from.getSomejsonarray());
         setSometimestamp(from.getSometimestamp());
+        resetChangedOnNotNull();
     }
 
     @Override
@@ -540,6 +541,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
         setSomejsonobject(somejsonobject);
         setSomejsonarray(somejsonarray);
         setSometimestamp(sometimestamp);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -560,6 +562,7 @@ public class SomethingRecord extends UpdatableRecordImpl<SomethingRecord> implem
             setSomejsonobject(value.getSomejsonobject());
             setSomejsonarray(value.getSomejsonarray());
             setSometimestamp(value.getSometimestamp());
+            resetChangedOnNotNull();
         }
     }
 

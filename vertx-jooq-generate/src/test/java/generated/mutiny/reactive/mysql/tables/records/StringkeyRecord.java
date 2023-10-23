@@ -139,6 +139,7 @@ public class StringkeyRecord extends UpdatableRecordImpl<StringkeyRecord> implem
     public void from(IStringkey from) {
         setKey(from.getKey());
         setValue(from.getValue());
+        resetChangedOnNotNull();
     }
 
     @Override
@@ -166,6 +167,7 @@ public class StringkeyRecord extends UpdatableRecordImpl<StringkeyRecord> implem
 
         setKey(key);
         setValue(value);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -177,6 +179,7 @@ public class StringkeyRecord extends UpdatableRecordImpl<StringkeyRecord> implem
         if (value != null) {
             setKey(value.getKey());
             setValue(value.getValue());
+            resetChangedOnNotNull();
         }
     }
 

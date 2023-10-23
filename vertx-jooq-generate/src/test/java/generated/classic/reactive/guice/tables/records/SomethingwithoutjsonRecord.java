@@ -139,6 +139,7 @@ public class SomethingwithoutjsonRecord extends UpdatableRecordImpl<Somethingwit
     public void from(ISomethingwithoutjson from) {
         setSomeid(from.getSomeid());
         setSomestring(from.getSomestring());
+        resetChangedOnNotNull();
     }
 
     @Override
@@ -166,6 +167,7 @@ public class SomethingwithoutjsonRecord extends UpdatableRecordImpl<Somethingwit
 
         setSomeid(someid);
         setSomestring(somestring);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -177,6 +179,7 @@ public class SomethingwithoutjsonRecord extends UpdatableRecordImpl<Somethingwit
         if (value != null) {
             setSomeid(value.getSomeid());
             setSomestring(value.getSomestring());
+            resetChangedOnNotNull();
         }
     }
 

@@ -4,6 +4,8 @@
 package generated.mutiny.reactive.guice;
 
 
+import generated.mutiny.reactive.guice.tables.Author;
+import generated.mutiny.reactive.guice.tables.Book;
 import generated.mutiny.reactive.guice.tables.Something;
 import generated.mutiny.reactive.guice.tables.Somethingcomposite;
 import generated.mutiny.reactive.guice.tables.Somethingwithoutjson;
@@ -14,6 +16,16 @@ import generated.mutiny.reactive.guice.tables.Somethingwithoutjson;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>vertx.AUTHOR</code>.
+     */
+    public static final Author AUTHOR = Author.AUTHOR;
+
+    /**
+     * The table <code>vertx.BOOK</code>.
+     */
+    public static final Book BOOK = Book.BOOK;
 
     /**
      * The table <code>vertx.something</code>.

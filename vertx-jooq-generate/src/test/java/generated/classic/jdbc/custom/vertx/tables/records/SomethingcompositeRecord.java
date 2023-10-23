@@ -184,6 +184,7 @@ public class SomethingcompositeRecord extends UpdatableRecordImpl<Somethingcompo
         setSomeid(someid);
         setSomesecondid(somesecondid);
         setSomejsonobject(somejsonobject);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -196,6 +197,7 @@ public class SomethingcompositeRecord extends UpdatableRecordImpl<Somethingcompo
             setSomeid(value.getSomeid());
             setSomesecondid(value.getSomesecondid());
             setSomejsonobject(value.getSomejsonobject());
+            resetChangedOnNotNull();
         }
     }
 

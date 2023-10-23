@@ -1,8 +1,9 @@
-package io.github.jklingsporn.vertx.jooq.generate.classic.reactive.mysql;
+package io.github.jklingsporn.vertx.jooq.generate.classic.r2dbc.regular;
 
 import io.github.jklingsporn.vertx.jooq.generate.AbstractVertxGeneratorTest;
-import io.github.jklingsporn.vertx.jooq.generate.MySQLConfigurationProvider;
+import io.github.jklingsporn.vertx.jooq.generate.PostgresConfigurationProvider;
 import io.github.jklingsporn.vertx.jooq.generate.VertxGeneratorStrategy;
+import io.github.jklingsporn.vertx.jooq.generate.classic.ClassicR2dbcVertxGenerator;
 import io.github.jklingsporn.vertx.jooq.generate.classic.ClassicReactiveVertxGenerator;
 
 /**
@@ -12,7 +13,7 @@ public class GeneratorTest extends AbstractVertxGeneratorTest {
 
 
     public GeneratorTest() {
-        super(ClassicReactiveVertxGenerator.class, VertxGeneratorStrategy.class,"classic.reactive.mysql", MySQLConfigurationProvider.getInstance());
+        super(ClassicR2dbcVertxGenerator.class, VertxGeneratorStrategy.class,"classic.r2dbc.regular", PostgresConfigurationProvider.getInstance());
     }
 
 }

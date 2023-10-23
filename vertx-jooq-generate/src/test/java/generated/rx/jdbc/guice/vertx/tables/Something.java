@@ -90,7 +90,7 @@ public class Something extends TableImpl<SomethingRecord> {
     /**
      * The column <code>VERTX.SOMETHING.SOMEBOOLEAN</code>.
      */
-    public final TableField<SomethingRecord, Boolean> SOMEBOOLEAN = createField(DSL.name("SOMEBOOLEAN"), SQLDataType.BOOLEAN.nullable(false).defaultValue(DSL.field("FALSE", SQLDataType.BOOLEAN)), this, "");
+    public final TableField<SomethingRecord, Boolean> SOMEBOOLEAN = createField(DSL.name("SOMEBOOLEAN"), SQLDataType.BOOLEAN.nullable(false).defaultValue(DSL.field(DSL.raw("FALSE"), SQLDataType.BOOLEAN)), this, "");
 
     /**
      * The column <code>VERTX.SOMETHING.SOMEDOUBLE</code>.

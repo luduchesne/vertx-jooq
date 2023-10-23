@@ -4,6 +4,8 @@
 package generated.rx.reactive.regular;
 
 
+import generated.rx.reactive.regular.tables.Author;
+import generated.rx.reactive.regular.tables.Book;
 import generated.rx.reactive.regular.tables.Something;
 import generated.rx.reactive.regular.tables.Somethingcomposite;
 import generated.rx.reactive.regular.tables.Somethingwithoutjson;
@@ -29,6 +31,16 @@ public class Vertx extends SchemaImpl {
      * The reference instance of <code>vertx</code>
      */
     public static final Vertx VERTX = new Vertx();
+
+    /**
+     * The table <code>vertx.AUTHOR</code>.
+     */
+    public final Author AUTHOR = Author.AUTHOR;
+
+    /**
+     * The table <code>vertx.BOOK</code>.
+     */
+    public final Book BOOK = Book.BOOK;
 
     /**
      * The table <code>vertx.something</code>.
@@ -69,6 +81,8 @@ public class Vertx extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            Author.AUTHOR,
+            Book.BOOK,
             Something.SOMETHING,
             Somethingcomposite.SOMETHINGCOMPOSITE,
             Somethingwithoutjson.SOMETHINGWITHOUTJSON

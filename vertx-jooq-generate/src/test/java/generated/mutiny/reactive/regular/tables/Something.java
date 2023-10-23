@@ -68,7 +68,7 @@ public class Something extends TableImpl<SomethingRecord> {
     /**
      * The column <code>vertx.something.someId</code>.
      */
-    public final TableField<SomethingRecord, Integer> SOMEID = createField(DSL.name("someId"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('\"something_someId_seq\"'::regclass)", SQLDataType.INTEGER)), this, "");
+    public final TableField<SomethingRecord, Integer> SOMEID = createField(DSL.name("someId"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field(DSL.raw("nextval('\"something_someId_seq\"'::regclass)"), SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>vertx.something.someString</code>.
@@ -103,7 +103,7 @@ public class Something extends TableImpl<SomethingRecord> {
     /**
      * The column <code>vertx.something.someEnum</code>.
      */
-    public final TableField<SomethingRecord, Someenum> SOMEENUM = createField(DSL.name("someEnum"), SQLDataType.VARCHAR.defaultValue(DSL.field("'FOO'::\"someEnum\"", SQLDataType.VARCHAR)).asEnumDataType(generated.mutiny.reactive.regular.enums.Someenum.class), this, "");
+    public final TableField<SomethingRecord, Someenum> SOMEENUM = createField(DSL.name("someEnum"), SQLDataType.VARCHAR.defaultValue(DSL.field(DSL.raw("'FOO'::\"someEnum\""), SQLDataType.VARCHAR)).asEnumDataType(generated.mutiny.reactive.regular.enums.Someenum.class), this, "");
 
     /**
      * The column <code>vertx.something.someJsonObject</code>.

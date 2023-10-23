@@ -17,4 +17,5 @@ public interface ExecutionStep {
      */
     public DIStep withPostgresReactiveDriver();
 
+    public DIStep withR2dbcDriver();
 }

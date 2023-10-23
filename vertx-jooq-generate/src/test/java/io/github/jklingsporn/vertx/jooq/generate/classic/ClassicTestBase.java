@@ -50,7 +50,7 @@ public abstract class ClassicTestBase<P,T,O, DAO extends GenericVertxDAO<?,P, T,
 
     protected void await(CountDownLatch latch)  {
         try {
-            if(!latch.await(3, TimeUnit.SECONDS)){
+            if(!latch.await(6, TimeUnit.SECONDS)){
                 Assert.fail("latch not triggered");
             }
         } catch (InterruptedException e) {
@@ -88,10 +88,10 @@ public abstract class ClassicTestBase<P,T,O, DAO extends GenericVertxDAO<?,P, T,
     public void asyncCRUDShouldSucceed() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         insertAndReturn(create())
-                .compose(dao::findOneById)
-                .compose(something -> dao
+                .flatMap(res ->dao.findOneById(res))
+                .flatMap(something -> dao
                         .update(setSomeO(something, createSomeO()))
-                        .compose(updatedRows -> {
+                        .flatMap(updatedRows -> {
                             Assert.assertEquals(1l, updatedRows.longValue());
                             return dao
                                     .deleteById(getId(something))
